@@ -1,6 +1,6 @@
 #the rules of the game 
 class Score
-    attr_reader : rolls
+    attr_reader :rolls
 
     def initialize(rolls)
         @rolls = rolls
@@ -11,7 +11,7 @@ class Score
         @rolls[cRolls] == 10 
     end 
 
-    def spare?(cRoll, roll)
+    def spare?(cRoll, rolls)
         roll[cRoll] + roll[cRoll+1] == 10 
     end
 
@@ -24,9 +24,6 @@ class Score
     end 
     def frameScores(cRolls, rolls)
         @rolls[cRolls] + @rolls[cRolls + 1]
-      end
-
-
-
+    end
 
 end
