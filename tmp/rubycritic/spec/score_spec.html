@@ -52,7 +52,7 @@
       </span>
     </div>
     <div>
-      <h3><small>classes /</small> game.rb</h3>
+      <h3><small>spec /</small> score_spec.rb</h3>
     </div>
   </div>
   <!--End Page Title -->
@@ -62,22 +62,22 @@
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-1">
-            <div class="rating a big">
-              A
+            <div class="rating b big">
+              B
             </div>
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">41</span><small> lines of codes</small></div>
-              <div><span class="metric">3</span><small> methods</small></div>
+              <div><span class="metric">45</span><small> lines of codes</small></div>
+              <div><span class="metric">0</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">11.4</span><small> complexity/method</small></div>
+              <div><span class="metric">N/A</span><small> complexity/method</small></div>
               <div><span class="metric">1</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">34.13</span><small> complexity</small></div>
-              <div><span class="metric">0</span><small> duplications</small></div>
+              <div><span class="metric">66.61</span><small> complexity</small></div>
+              <div><span class="metric">32</span><small> duplications</small></div>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@
             <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
             <li class="active">
               <a href="#" id="toggle-smells" class="toggle-button button">
-                3
+                2
                 smells
               </a>
             </li>
@@ -97,47 +97,51 @@
       </div>
     </div>
 
-    <code class="prettyprint linenums lang-ruby file-code js-file-code">require_relative &#39;Score&#39;
+    <code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;Score&#39;
 
-class Game <ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank"><b>IrresponsibleModule</b></a>        </span>      </div>      <span>Game has no descriptive comment</span>          </div>  </li></ol>
-    attr_reader :rolls, :score
-
-    def initialize 
-        @rolls = []
-        @score = 0 
-    end
-
-
-    def pines(pines_k)
-        @rolls.push(pines_k)
-    end 
-
-
-    def start <ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="http://docs.seattlerb.org/flog/" target="_blank"><b>HighComplexity</b></a>        </span>      </div>      <span>Game#start has a flog score of 31</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>Game#start has approx 10 statements</span>          </div>  </li></ol>
-        score_board = Score.new(@rolls)
-        roll_counter = 0
-        10.times do 
-            if score_board.strike?(roll_counter, rolls)
-                @score += score_board.strikeScore(roll_counter, rolls)
-                roll_counter+=1
-
-            elsif score_board.spare?(roll_counter, rolls)   
-                @score+= score_board.spareScore(roll_counter, rolls)  
-                roll_counter +=2
-
-            else 
-                @score+= score_board.frameScores(roll_counter, rolls)
-                roll_counter +=2
-
-            end
+RSpec.describe strike? do
+    RSpec.describe Score do
+      context &quot;receive the parameter&quot; do
+        it &quot;compares if it is equal to 10&quot; do
+            rolls = Score.new
+            @rolls = [10]
+            @c_roll = 0        
+            @score = 10   
+            expect(rolls.strike?(@rolls[@c_roll] ) == @score ? true : false ).to eq true  
         end
-        @score
+      end
     end
-
-
-
-
 end
+
+RSpec.describe spare? do
+    RSpec.describe Score do
+      context &quot;receive the parameter&quot; do
+        it &quot;compares if it is equal to 10&quot; do<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="http://docs.seattlerb.org/flog/" target="_blank"><b>HighComplexity</b></a>        </span>      </div>      <span>context(receive the parameter)::it#compares if it is equal to 10 has a flog score of 39</span>          </div>  </li></ol>
+            rolls = Score.new
+            @rolls__ = [5,5]
+            @c_roll = 1        
+            @score = 10           
+             expect(rolls.spare?(@rolls[@c_roll]+[c_roll+1]) == 10 ? true : false ).to eq true  <ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="http://docs.seattlerb.org/flay/" target="_blank"><b>DuplicateCode</b></a>        </span>      </div>      <span>Similar code found in 2 nodes</span>              <span>Locations:</span>                  <a href="score_spec.html#L25" class="js-smell-location">0</a>                  <a href="score_spec.html#L39" class="js-smell-location">1</a>                  </div>  </li></ol>
+        end
+      end
+    end
+end
+
+RSpec.describe frameScore do
+    RSpec.describe Score do
+      context &quot;receive the parameter&quot; do
+        it &quot;compares if it is less than 10&quot; do
+            rolls = Score.new
+            @rolls__ = [5,4]
+            @c_roll = 0        
+            @score = 10           
+             expect(rolls.frameScore(@rolls[@c_roll] + [c_roll+1] ) == 10 ? true : false ).to eq false <ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="http://docs.seattlerb.org/flay/" target="_blank"><b>DuplicateCode</b></a>        </span>      </div>      <span>Similar code found in 2 nodes</span>              <span>Locations:</span>                  <a href="score_spec.html#L25" class="js-smell-location">0</a>                  <a href="score_spec.html#L39" class="js-smell-location">1</a>                  </div>  </li></ol>
+        end
+      end
+    end
+end
+
+  
 </code>
   </div>
 </div>
